@@ -86,6 +86,13 @@ export const login = async (req, res) => {
   });
 };
 
-export const logout = async (req, res) => {};
+export const logout = async (req, res) => {
+  res.clearCookie("zerodha-token", { maxAge: 0 });
+  res.status(200).json({
+    message: "User logged out successfully",
+    data: null,
+    success: true,
+  });
+};
 
 export const profile = async (req, res) => {};
