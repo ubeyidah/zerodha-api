@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import authRoutes from "./routes/authRoutes.js";
 import holdingRoutes from "./routes/holdingRoutes.js";
 import positionRoutes from "./routes/positionRoutes.js";
+import orderRoutes from "./routes/orderRoutes.js";
 
 // config
 configDotenv();
@@ -15,8 +16,9 @@ const port = process.env.PORT || 3000;
 
 // routes
 app.use("/api/v2/auth", authRoutes);
-app.use("/api/v2/holding", holdingRoutes);
-app.use("/api/v2/position", positionRoutes);
+app.use("/api/v2/holdings", holdingRoutes);
+app.use("/api/v2/positions", positionRoutes);
+app.use("/api/v2/orders", orderRoutes);
 
 //global error handler
 app.use((err, req, res, next) => {

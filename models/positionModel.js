@@ -9,6 +9,7 @@ const positionSchema = new mongoose.Schema(
     price: Number,
     net: String,
     isLoss: Boolean,
+    day: String,
   },
   {
     timestamps: true,
