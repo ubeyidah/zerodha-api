@@ -95,4 +95,21 @@ export const logout = async (req, res) => {
   });
 };
 
-export const profile = async (req, res) => {};
+export const profile = async (req, res) => {
+  const user = await User.findById(req.userId);
+  if (!user) {
+    return res.status(404).json({
+      message: "User not found",
+      data: null,
+      success: false,
+    });
+  }
+
+  const { password: _, ...userWithoutPassword } = user._doc;
+
+  res.status(200).json({
+    message: "User profile fetched successfully",
+    data: userWithoutPassword,
+    success: true,
+  });
+};
