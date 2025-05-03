@@ -14,6 +14,18 @@ const port = process.env.PORT || 3000;
 // routes
 app.use("/api/v2/auth", authRoutes);
 
+//global error handler
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  res.status(statusCode).json({
+    success: false,
+    message: err.message || "Internal Server Error",
+    error: err.name,
+  });
+
+  console.error(err.stack);
+});
+
 app.listen(port, () => {
   console.log(`Server is running -> http://localhost:${port}`);
   connectDB();
