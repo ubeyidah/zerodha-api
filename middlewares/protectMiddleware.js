@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import User from "../models/userModel.js";
+import { env } from "../utils/env.js";
 
 const protectRoute = async (req, res, next) => {
   const token = req.cookies["zerodha-token"];
@@ -9,7 +10,7 @@ const protectRoute = async (req, res, next) => {
       .json({ message: "Unauthorized", success: false, data: null });
   }
 
-  const decoded = jwt.verify(token, process.env.JWT_SECRET);
+  const decoded = jwt.verify(token, env("JWT_SECRET"));
   if (!decoded) {
     return res
       .status(401)

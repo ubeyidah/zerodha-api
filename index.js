@@ -8,6 +8,7 @@ import positionRoutes from "./routes/positionRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
+import { env } from "./utils/env.js";
 
 // config`
 configDotenv();
@@ -15,7 +16,7 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.set("trust proxy", 1);
-const port = process.env.PORT || 3000;
+const port = env("PORT", 3000);
 
 // security
 const limit = rateLimit({
