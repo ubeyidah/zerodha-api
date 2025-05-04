@@ -14,6 +14,7 @@ configDotenv();
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
+app.set("trust proxy", 1);
 const port = process.env.PORT || 3000;
 
 // security
