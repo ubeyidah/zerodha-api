@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "node --watch index.js",
-    "start": "ndoe index.js"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
