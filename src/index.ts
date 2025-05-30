@@ -9,6 +9,7 @@ import orderRoutes from "./routes/orderRoutes";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
 import { env } from "./utils/env";
+import { CustomError } from "./types";
 
 // config`
 configDotenv();
@@ -40,8 +41,9 @@ app.get("/", (req, res) => {
 });
 
 //global error handler
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  const statusCode = (err as any).statusCode || 500;
+
+app.use((err: CustomError, req: Request, res: Response, next: NextFunction) => {
+  const statusCode = err.statusCode || 500;
   res.status(statusCode).json({
     success: false,
     message: err.message || "Internal Server Error",
