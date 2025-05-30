@@ -1,28 +1,37 @@
 import jwt from "jsonwebtoken";
-import User from "../models/userModel.js";
-import { env } from "../utils/env.js";
+import { NextFunction, Request, Response } from "express";
+import { verifyToken } from "../utils/verifyToken";
+import User from "../models/userModel";
 
-const protectRoute = async (req, res, next) => {
+const protectRoute = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const token = req.cookies["zerodha-token"];
   if (!token) {
-    return res
+    res
       .status(401)
       .json({ message: "Unauthorized", success: false, data: null });
+    return;
   }
 
-  const decoded = jwt.verify(token, env("JWT_SECRET"));
-  if (!decoded) {
-    return res
+  const decoded = verifyToken(token);
+  if (decoded == null) {
+    res
       .status(401)
       .json({ message: "Invalid token", success: false, data: null });
+    return;
   }
+
   const user = await User.findById(decoded.id);
   if (!user) {
-    return res
+    res
       .status(404)
       .json({ message: "User not found", success: false, data: null });
+    return;
   }
-  req.userId = user._id;
+  req.userId = String(user._id);
   next();
 };
 

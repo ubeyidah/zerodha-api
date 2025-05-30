@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "dev": "node --watch index.js",
-    "start": "node index.js"
+    "dev": "ts-node-dev --respawn --transpile-only ./src/index",
+    "build": "tsc",
+    "start": "node ./dist/index.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["api","nodejs","typescript","javascript","mongodb"],
+  "author": "ubeyid oumer",
   "license": "ISC",
   "packageManager": "pnpm@10.10.0",
   "dependencies": {
@@ -23,5 +23,20 @@
     "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.14.1"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^3.0.0",
+    "@types/cookie-parser": "^1.4.8",
+    "@types/cors": "^2.8.18",
+    "@types/dotenv": "^8.2.3",
+    "@types/express": "^5.0.2",
+    "@types/express-rate-limit": "^6.0.2",
+    "@types/helmet": "^4.0.0",
+    "@types/joi": "^17.2.3",
+    "@types/jsonwebtoken": "^9.0.9",
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^22.15.27",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3"
   }
 }

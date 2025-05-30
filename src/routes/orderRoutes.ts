@@ -1,6 +1,6 @@
 import { Router } from "express";
-import protectRoute from "../middlewares/protectMiddleware.js";
-import { buy, getOrders, sell } from "../controllers/orderControllers.js";
+import protectRoute from "../middlewares/protectMiddleware";
+import { buy, getOrders, sell } from "../controllers/orderControllers";
 
 const router = Router();
 

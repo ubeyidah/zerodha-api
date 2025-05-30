@@ -1,7 +1,8 @@
 import jwt from "jsonwebtoken";
-import { env } from "../utils/env.js";
+import { env } from "./env";
+import { Response } from "express";
 
-export const genAndSetToken = (id, res) => {
+export const genAndSetToken = (id: string, res: Response) => {
   const token = jwt.sign({ id }, env("JWT_SECRET"), {
     expiresIn: "30d",
   });
